@@ -111,13 +111,13 @@ plt.savefig(os.path.join(OUT_DIR, "daily_total_sales.png"))
 plt.close()
 print("Saved plot:", os.path.join(OUT_DIR, "daily_total_sales.png"))
 
-# 2. Top 10 products bar chart (plotly interactive saved as HTML)
+
 top_products = df.groupby("product_id")["sales"].sum().reset_index().sort_values("sales", ascending=False).head(10)
 fig = px.bar(top_products, x="product_id", y="sales", title="Top 10 Products by Sales")
 fig.write_html(os.path.join(OUT_DIR, "top_products.html"))
 print("Saved interactive plot:", os.path.join(OUT_DIR, "top_products.html"))
 
-# 3. Sales per store (matplotlib)
+
 store_sales = df.groupby("store_id")["sales"].sum().sort_values(ascending=False)
 plt.figure(figsize=(8,4))
 store_sales.plot(kind="bar")
